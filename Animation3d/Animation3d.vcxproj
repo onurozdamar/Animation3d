@@ -139,10 +139,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="main.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="libs.h" />
+    <ClInclude Include="MovementModel.h" />
+    <ClInclude Include="Object3D.h" />
+    <ClInclude Include="PPMHeader.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Rotate.h" />
+    <ClInclude Include="Scale.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timeline.h" />
+    <ClInclude Include="Translate.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MovementModel.cpp" />
+    <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="Rotate.cpp" />
+    <ClCompile Include="Scale.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timeline.cpp" />
+    <ClCompile Include="Translate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

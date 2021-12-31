@@ -13,15 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Kaynak Dosyalar\MovementModel">
+      <UniqueIdentifier>{3225e2bc-70cd-495a-afdf-5c7fc0972b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Üst Bilgi Dosyaları\Loader">
+      <UniqueIdentifier>{995d4618-8d8b-4b89-bc73-97fe61ea17a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Üst Bilgi Dosyaları\MovementModel">
+      <UniqueIdentifier>{afdf680c-b7d0-4008-b8c4-e9aa60d527db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
+    <ClInclude Include="Animation.h">
       <Filter>Üst Bilgi Dosyaları</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Üst Bilgi Dosyaları</Filter>
+    </ClInclude>
+    <ClInclude Include="libs.h">
+      <Filter>Üst Bilgi Dosyaları</Filter>
+    </ClInclude>
+    <ClInclude Include="Timeline.h">
+      <Filter>Üst Bilgi Dosyaları</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D.h">
+      <Filter>Üst Bilgi Dosyaları</Filter>
+    </ClInclude>
+    <ClInclude Include="PPMHeader.h">
+      <Filter>Üst Bilgi Dosyaları\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotate.h">
+      <Filter>Üst Bilgi Dosyaları\MovementModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scale.h">
+      <Filter>Üst Bilgi Dosyaları\MovementModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Üst Bilgi Dosyaları\MovementModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Translate.h">
+      <Filter>Üst Bilgi Dosyaları\MovementModel</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementModel.h">
+      <Filter>Üst Bilgi Dosyaları\MovementModel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Kaynak Dosyalar</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Kaynak Dosyalar</Filter>
+    </ClCompile>
+    <ClCompile Include="Timeline.cpp">
+      <Filter>Kaynak Dosyalar</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>Kaynak Dosyalar</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Kaynak Dosyalar</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementModel.cpp">
+      <Filter>Kaynak Dosyalar\MovementModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotate.cpp">
+      <Filter>Kaynak Dosyalar\MovementModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scale.cpp">
+      <Filter>Kaynak Dosyalar\MovementModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate.cpp">
+      <Filter>Kaynak Dosyalar\MovementModel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
