@@ -18,6 +18,31 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="MovementModel.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="Rotate.cpp" />
+    <ClCompile Include="Scale.cpp" />
+    <ClCompile Include="SinusMove.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Translate.cpp" />
+    <ClCompile Include="Timeline.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="MovementModel.h" />
+    <ClInclude Include="libs.h" />
+    <ClInclude Include="Object3D.h" />
+    <ClInclude Include="PPMHeader.h" />
+    <ClInclude Include="Rotate.h" />
+    <ClInclude Include="Scale.h" />
+    <ClInclude Include="SinusMove.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Translate.h" />
+    <ClInclude Include="Timeline.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,30 +163,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="libs.h" />
-    <ClInclude Include="MovementModel.h" />
-    <ClInclude Include="Object3D.h" />
-    <ClInclude Include="PPMHeader.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Rotate.h" />
-    <ClInclude Include="Scale.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="Timeline.h" />
-    <ClInclude Include="Translate.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovementModel.cpp" />
-    <ClCompile Include="Object3D.cpp" />
-    <ClCompile Include="Rotate.cpp" />
-    <ClCompile Include="Scale.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Timeline.cpp" />
-    <ClCompile Include="Translate.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

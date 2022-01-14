@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include <glut.h>
 #include <fstream>
@@ -9,3 +8,6 @@
 #include <stdexcept>
 
 using namespace std;
+
+#define FRAMES 25
+

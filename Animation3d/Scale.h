@@ -4,8 +4,11 @@
 class Scale : public MovementModel
 {
 public:
-	Scale(GLfloat x, GLfloat y, GLfloat z);
-	void hareket();
-	void update();
+	Scale(GLfloat _sx, GLfloat _sy, GLfloat _sz, GLfloat _ex, GLfloat _ey, GLfloat _ez, int timeRange);
+	void move();
+	void update(float timeMill);
+	void yaz();
+private:
+	GLfloat dx, dy, dz;
+	GLfloat sx, sy, sz;
 };
-

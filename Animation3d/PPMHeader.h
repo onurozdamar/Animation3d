@@ -1,5 +1,6 @@
+
 #pragma once
-#include "libs.h"
+#include "includes.h"
 
 #define OFF_MODEL "m1779/m1779.off"
 #define TEXTURE_FILE "texture.ppm"
@@ -21,6 +22,55 @@ public:
 	wrldFci* yuzeyler;
 	GLubyte* texArray;
 	int width, height, color;
+
+	void loadOFFModel(const char* fileName) {
+		int const satirUzunluk = 200;
+		char satir[satirUzunluk];
+		ifstream modelFile;
+		modelFile.open(fileName, ios::in);
+		modelFile.getline(satir, satirUzunluk);
+
+		if (strcmp(satir, "OFF") == 0) {
+			//Gecerli bir OFF dosyasi alindi...
+			modelFile.getline(satir, satirUzunluk);
+			const char bosluk = ' ';
+			char* next = NULL;
+			noktaSayisi = atoi(strtok_s(satir, &bosluk, &next));
+			yuzeySayisi = atoi(strtok_s(NULL, &bosluk, &next));
+			noktalar = new wrldPtf[noktaSayisi];
+			yuzeyler = new wrldFci[yuzeySayisi];
+			char* temp = NULL, * ilkSayi = NULL, * ikinciSayi = NULL, * ucuncuSayi = NULL;
+			//Noktalar okunuyor...
+			for (int nokta = 0; nokta < noktaSayisi; nokta++) {
+				modelFile.getline(satir, satirUzunluk);
+				wrldPtf n{ 0,0,0 };
+				ilkSayi = strtok_s(satir, &bosluk, &next);
+				ikinciSayi = strtok_s(NULL, &bosluk, &next);
+				ucuncuSayi = strtok_s(NULL, &bosluk, &next);
+
+				n.x = atof((const char*)ilkSayi);
+				n.y = atof((const char*)ikinciSayi);
+				n.z = atof((const char*)ucuncuSayi);
+				noktalar[nokta] = n;
+			}
+			//Yuzeyler okunuyor...
+			for (int yuzey = 0; yuzey < yuzeySayisi; yuzey++) {
+				modelFile.getline(satir, satirUzunluk);
+				wrldFci n{ 0,0,0 };
+
+				temp = strtok_s(satir, &bosluk, &next);
+				ilkSayi = strtok_s(NULL, &bosluk, &next);
+				ikinciSayi = strtok_s(NULL, &bosluk, &next);
+				ucuncuSayi = strtok_s(NULL, &bosluk, &next);
+
+				n.n1 = atoi((const char*)ilkSayi);
+				n.n2 = atoi((const char*)ikinciSayi);
+				n.n3 = atoi((const char*)ucuncuSayi);
+				yuzeyler[yuzey] = n;
+			}
+		}
+		modelFile.close();
+	}
 
 	void readTex(const char* fileName) {
 		ifstream texFile;

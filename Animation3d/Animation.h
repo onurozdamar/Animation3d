@@ -1,5 +1,6 @@
 #pragma once
-#include "libs.h"
+#include "includes.h"
+#include "MovementModel.h"
 #include "Timeline.h"
 
 class Animation
@@ -7,11 +8,14 @@ class Animation
 public:
 	Animation();
 	~Animation();
-	void animate(int timeMill);
+	void animate(float timeMill);
 	void draw();
 	int getTime();
 	bool nextFrame();
-	void addTimeline(Timeline* t);
+	void addTimeline(Timeline* zd);
+	void pauseOtherTimelines();
+	void print();
+	bool animating = false;
 private:
 	vector<Timeline*>* timelines;
 	int currentTimeline;
