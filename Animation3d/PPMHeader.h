@@ -1,6 +1,6 @@
 
 #pragma once
-#include "includes.h"
+#include "libs.h"
 
 #define OFF_MODEL "m1779/m1779.off"
 #define TEXTURE_FILE "texture.ppm"
