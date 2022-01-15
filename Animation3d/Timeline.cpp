@@ -64,13 +64,11 @@ void Timeline::addMove(MovementModel* hm, Object3D* nesne)
 
 void Timeline::yaz()
 {
-	cout << "+++++++++++++++++++nesnedeki hareket modelleri+++++++++++++++++++++++" << endl;
 	for (int i = 0; i < objects->size(); i++)
 	{
 		objects->at(i)->yaz();
 	}
 
-	cout << "+++++++++++++++++++zamandaki hareket modelleri+++++++++++++++++++++++" << endl;
 
 	for (int i = 0; i < moveModels->size(); i++)
 	{

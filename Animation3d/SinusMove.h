@@ -6,10 +6,10 @@ class SinusMove : public MovementModel
 {
 public:
 	SinusMove(GLfloat _x, GLfloat _y, GLfloat _z, int timeRange);
-	void move();
-	void update(float timeMill);
+	void move(); // call the glut func
+	void update(float timeMill); // update position
 	void yaz();
 private:
-	GLfloat dx, dy, dz;
+	GLfloat dx, dy, dz; // speed
 };
 

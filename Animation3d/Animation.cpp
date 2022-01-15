@@ -42,19 +42,16 @@ bool Animation::nextFrame()
 
 void Animation::pauseOtherTimelines()
 {
-	cout << "---------------------pause diðerleri-------------------- " << endl;
 	animating = true;
 	for (int i = 0; i < timelines->size(); i++)
 	{
 		if (i == currentTimeline)
 		{
 			timelines->at(i)->startt();
-			cout << "start" << i << endl;
 		}
 		else
 		{
 			timelines->at(i)->pause();
-			cout << "pause" << i << endl;
 		}
 	}
 }
@@ -68,7 +65,6 @@ void Animation::print()
 {
 	for (int i = 0; i < timelines->size(); i++)
 	{
-		cout << "///////////zaman dilimi///////////////" << i << endl;
 		timelines->at(i)->yaz();
 	}
 }

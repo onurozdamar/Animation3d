@@ -8,12 +8,12 @@ class Animation
 public:
 	Animation();
 	~Animation();
-	void animate(float timeMill);
-	void draw();
-	int getTime();
-	bool nextFrame();
+	void animate(float timeMill); // animate the objects
+	void draw(); // draw objects
+	int getTime(); // get time of current timeline
+	bool nextFrame(); // go next frame
 	void addTimeline(Timeline* zd);
-	void pauseOtherTimelines();
+	void pauseOtherTimelines(); // start current timeline and pause other timelines
 	void print();
 	bool animating = false;
 private:

@@ -135,13 +135,11 @@ void anim(int timeMill) {
 	{
 		if (animasyon->nextFrame())
 		{
-			cout << "sonraki frame" << endl;
 			animationFrames = animasyon->getTime() * FRAMES;
 			timeMill = animationFrames;
 			animasyon->print();
 		}
 		else {
-			cout << "animasyon son buldu!" << endl;
 			return;
 		}
 	}
@@ -163,7 +161,6 @@ void mouse(int button, int state, int x, int y)
 			{
 				return;
 			}
-			cout << "animasyon start" << endl;
 			animationFrames = animasyon->getTime() * FRAMES;
 			animasyon->pauseOtherTimelines();
 			anim(animationFrames);

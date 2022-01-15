@@ -17,14 +17,14 @@ class Object3D
 public:
 	Object3D(Texture* tex);
 	~Object3D();
-	void draw();
-	void update(float timeMill);
+	void draw(); // draw object
+	void update(float timeMill); // update position
 	void addMovement(MovementModel* hm);
-	void reset();
+	void reset(); // reset the movement's moveability
 	void yaz();
 private:
-	Texture* tex;
-	const static int size = 6;// yüz sayýsý
+	Texture* tex;  // textrure of object
+	const static int size = 6;// surface size
 	std::vector<Vector> points[size];
 	std::vector<Vector> surfaces[size];
 

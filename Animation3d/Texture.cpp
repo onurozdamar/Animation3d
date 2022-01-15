@@ -1,10 +1,7 @@
 #include "Texture.h"
 
 Texture::Texture() {
-	//BMP bmp_struct("checker.bmp");
-	cout << "create tex";
 	PPMHeader ppm;
-	//ppm.loadOFFModel(OFF_MODEL); // bu fonk çýlgýn
 	ppm.readTex(TEXTURE_FILE);
 	w = ppm.width;
 	h = ppm.height;

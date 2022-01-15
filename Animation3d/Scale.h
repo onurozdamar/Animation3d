@@ -5,10 +5,10 @@ class Scale : public MovementModel
 {
 public:
 	Scale(GLfloat _sx, GLfloat _sy, GLfloat _sz, GLfloat _ex, GLfloat _ey, GLfloat _ez, int timeRange);
-	void move();
-	void update(float timeMill);
+	void move(); // call the glut func
+	void update(float timeMill); // update position
 	void yaz();
 private:
-	GLfloat dx, dy, dz;
-	GLfloat sx, sy, sz;
+	GLfloat dx, dy, dz; // speed
+	GLfloat sx, sy, sz; // start position
 };
