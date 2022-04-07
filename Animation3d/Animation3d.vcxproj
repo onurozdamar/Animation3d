@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,25 +20,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="MovementModel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="Rotate.cpp" />
     <ClCompile Include="Scale.cpp" />
+    <ClCompile Include="Shape3D.cpp" />
     <ClCompile Include="SinusMove.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Translate.cpp" />
     <ClCompile Include="Timeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="MovementModel.h" />
     <ClInclude Include="libs.h" />
     <ClInclude Include="Object3D.h" />
     <ClInclude Include="PPMHeader.h" />
     <ClInclude Include="Rotate.h" />
     <ClInclude Include="Scale.h" />
+    <ClInclude Include="Shape3D.h" />
     <ClInclude Include="SinusMove.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Translate.h" />
     <ClInclude Include="Timeline.h" />

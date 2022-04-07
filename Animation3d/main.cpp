@@ -2,12 +2,21 @@
 ////// Includes
 #include"libs.h"
 #include "Animation.h"
+#include "TextBox.h"
+#define RED 1
+#define GREEN 2
+#define BLUE 3
+#define WHITE 4
 
 ////// Global Variables
-GLsizei pencereEni = 800, pencereBoyu = 800;
+int window, subWindow;
+GLsizei pencereEni = 1200, pencereBoyu = 800;
+GLsizei menuWindowWidth = 400, menuWindowHeight = 800;
 
 Animation* animasyon;
 int animationFrames = 0;
+
+void menuWindowRender();
 
 void addSomeData()
 {
@@ -17,12 +26,12 @@ void addSomeData()
 	Object3D* nesne3 = new Object3D(tex);
 	Object3D* nesne4 = new Object3D(tex);
 
-	Timeline* ilkSaniye = new Timeline(0, 3);
-	ilkSaniye->addObject(nesne1);
+	Timeline* ilkSaniye = new Timeline(0, 3);  // zaman dilimlerini oluþturuyon
+	ilkSaniye->addObject(nesne1); // hangi nesne varsa ekle
 	ilkSaniye->addObject(nesne2);
 	ilkSaniye->addObject(nesne3);
 	ilkSaniye->addObject(nesne4);
-	ilkSaniye->addMove(new Translate(2.0f, 0.0f, 0.0f, ilkSaniye->getTime()), nesne1);
+	ilkSaniye->addMove(new Translate(2.0f, 0.0f, 0.0f, ilkSaniye->getTime()), nesne1); // burda da animasyonlarý ekliyn
 	ilkSaniye->addMove(new Translate(-2.0f, 0.0f, 0.0f, ilkSaniye->getTime()), nesne2);
 	ilkSaniye->addMove(new Translate(0.0f, 2.0f, 0.0f, ilkSaniye->getTime()), nesne3);
 	ilkSaniye->addMove(new Translate(0.0f, -2.0f, 0.0f, ilkSaniye->getTime()), nesne4);
@@ -92,7 +101,6 @@ void addSomeData()
 	animasyon->addTimeline(altinciSaniye);
 }
 
-
 // Initialize
 // desc: initializes OpenGL
 void init()
@@ -137,7 +145,7 @@ void anim(int timeMill) {
 		{
 			animationFrames = animasyon->getTime() * FRAMES;
 			timeMill = animationFrames;
-			animasyon->print();
+			//animasyon->print();
 		}
 		else {
 			return;
@@ -164,13 +172,18 @@ void mouse(int button, int state, int x, int y)
 			animationFrames = animasyon->getTime() * FRAMES;
 			animasyon->pauseOtherTimelines();
 			anim(animationFrames);
-			animasyon->print();
+			//animasyon->print();
 
 		}
 		break;
 	default:
 		break;
 	}
+}
+
+void keyBoardEvent(unsigned char key, int x, int y)
+{
+	cout << "key main";
 }
 
 void pencereYenidenSekillendir(int yeniEn, int yeniBoy) {
@@ -185,18 +198,98 @@ void pencereYenidenSekillendir(int yeniEn, int yeniBoy) {
 	pencereBoyu = yeniBoy;
 }
 
+
+/*MENU WÝNDOW*/
+TextBox* tb;
+void menuWindowRender()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	tb->draw();
+
+	glutSwapBuffers();
+}
+
+void processMenuEvents(int option)
+{
+	cout << "giriþ";
+	int red = 0.0;
+	int green = 0.0;
+	int blue = 0.0;
+
+	switch (option) {
+	case RED:
+		cout << "1";
+		red = 1.0; break;
+	case GREEN:
+		cout << "2";
+		green = 1.0; break;
+	case BLUE:
+		cout << "3";
+		blue = 1.0; break;
+	case WHITE:
+		cout << "4";
+		red = 1.0;
+		green = 1.0;
+		blue = 1.0; break;
+	}
+}
+
+void menuWindowMouseEvent(int button, int state, int x, int y)
+{
+	tb->mouseEvent(button, state, x, y);
+}
+
+void menuWindowKeyBoardEvent(unsigned char key, int x, int y)
+{
+	cout << "a";
+	glutSetWindow(subWindow);
+	tb->keyBoardEvent(key, x, y);
+}
+
+void createGLUTMenus()
+{
+	int menu = glutCreateMenu(processMenuEvents);
+	glutAddMenuEntry("Red", RED);
+	glutAddMenuEntry("Green", GREEN);
+	glutAddMenuEntry("Blue", BLUE);
+	glutAddMenuEntry("White", WHITE);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
+/* todo
+		sub window oluþtur
+		animasyon windowu ve menu windowu olmalý
+		text inputlarý
+		butonlar
+		timleline slider
+
+	*/
 int main(int argc, char** argv)
 {
+	///Main window
 	glutInit(&argc, (char**)argv);  // GLUT'u baþlat
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH); //gösterim modunu ayarla
 	glutInitWindowPosition(100, 100); // Pencerenin sol üst ekran köþesinden uzaklýðýný ayarla
 	glutInitWindowSize(pencereEni, pencereBoyu);   // Pencere boyunu ayarla
-	glutCreateWindow("Dama tahtasi dokulu kup");	// Verilen baþlýkla pencereyi oluþtur
-	init();							//Ýlklendirmeyi çalýþtýr
+	window = glutCreateWindow("Dama tahtasi dokulu kup");	// Verilen baþlýkla pencereyi oluþtur
+	init();				//Ýlklendirmeyi çalýþtýr
 	glutMouseFunc(mouse); // set mouse func
 	glutDisplayFunc(Render); // Yeniden pencere çizimleri için gösterim geri bildirim fonksiyonunu kayýtla
 	glutReshapeFunc(pencereYenidenSekillendir);
+	glutKeyboardFunc(menuWindowKeyBoardEvent);
+
+	///Menu Window
+	subWindow = glutCreateSubWindow(window, pencereEni - menuWindowWidth, 0, menuWindowWidth, menuWindowHeight);
+	glutDisplayFunc(menuWindowRender);
+	glutMouseFunc(menuWindowMouseEvent);
+	glOrtho(0, menuWindowWidth, menuWindowHeight, 0, -5, 5);
+	createGLUTMenus();
+
+	tb = new TextBox(100, 100, 50, 50, "text", subWindow);
+
 	glutMainLoop();           // Sonsuz bir þekilde süreç iþlem döngüsüne gir
+
 
 	return 0;
 }
