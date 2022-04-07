@@ -24,6 +24,7 @@
     <ClCompile Include="MovementModel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="Rotate.cpp" />
     <ClCompile Include="Scale.cpp" />
     <ClCompile Include="Shape3D.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="libs.h" />
     <ClInclude Include="Object3D.h" />
     <ClInclude Include="PPMHeader.h" />
+    <ClInclude Include="Pyramid.h" />
     <ClInclude Include="Rotate.h" />
     <ClInclude Include="Scale.h" />
     <ClInclude Include="Shape3D.h" />

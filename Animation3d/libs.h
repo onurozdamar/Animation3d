@@ -21,3 +21,8 @@ public:
 	}
 };
 
+struct Vector
+{
+	GLfloat x, y, z;
+};
+

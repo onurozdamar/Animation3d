@@ -3,6 +3,9 @@
 #include"libs.h"
 #include "Animation.h"
 #include "TextBox.h"
+#include "Shape3D.h"
+#include "Cube.h"
+#include "Pyramid.h"
 #define RED 1
 #define GREEN 2
 #define BLUE 3
@@ -21,10 +24,13 @@ void menuWindowRender();
 void addSomeData()
 {
 	Texture* tex = new Texture();
-	Object3D* nesne1 = new Object3D(tex);
-	Object3D* nesne2 = new Object3D(tex);
-	Object3D* nesne3 = new Object3D(tex);
-	Object3D* nesne4 = new Object3D(tex);
+	Shape3D* cube = new Cube();
+	Shape3D* piramit = new Pyramid();
+
+	Object3D* nesne1 = new Object3D(piramit, tex);
+	Object3D* nesne2 = new Object3D(piramit, tex);
+	Object3D* nesne3 = new Object3D(cube, tex);
+	Object3D* nesne4 = new Object3D(cube, tex);
 
 	Timeline* ilkSaniye = new Timeline(0, 3);  // zaman dilimlerini oluþturuyon
 	ilkSaniye->addObject(nesne1); // hangi nesne varsa ekle
@@ -200,12 +206,15 @@ void pencereYenidenSekillendir(int yeniEn, int yeniBoy) {
 
 
 /*MENU WÝNDOW*/
-TextBox* tb;
+vector<TextBox*> inputs;
 void menuWindowRender()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	tb->draw();
+	for (int i = 0; i < inputs.size(); i++)
+	{
+		inputs.at(i)->draw();
+	}
 
 	glutSwapBuffers();
 }
@@ -237,14 +246,20 @@ void processMenuEvents(int option)
 
 void menuWindowMouseEvent(int button, int state, int x, int y)
 {
-	tb->mouseEvent(button, state, x, y);
+	for (int i = 0; i < inputs.size(); i++)
+	{
+		inputs.at(i)->mouseEvent(button, state, x, y);
+	}
 }
 
 void menuWindowKeyBoardEvent(unsigned char key, int x, int y)
 {
 	cout << "a";
 	glutSetWindow(subWindow);
-	tb->keyBoardEvent(key, x, y);
+	for (int i = 0; i < inputs.size(); i++)
+	{
+		inputs.at(i)->keyBoardEvent(key, x, y);
+	}
 }
 
 void createGLUTMenus()
@@ -255,15 +270,19 @@ void createGLUTMenus()
 	glutAddMenuEntry("Blue", BLUE);
 	glutAddMenuEntry("White", WHITE);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
+	//glutDetachMenu(GLUT_RIGHT_BUTTON);
+
+	TextBox* x = new TextBox(100, 100, 50, 50, "", subWindow);
+	TextBox* y = new TextBox(100, 100, 50, 50, "", subWindow);
+	TextBox* z = new TextBox(100, 100, 50, 50, "", subWindow);
 }
 
 /* todo
 		sub window oluþtur
-		animasyon windowu ve menu windowu olmalý
-		text inputlarý
+		animasyon windowu, menu windowu ve timleline slider windowu olmalý
+		text inputlar
 		butonlar
-		timleline slider
-
+		piramit
 	*/
 int main(int argc, char** argv)
 {
@@ -286,10 +305,8 @@ int main(int argc, char** argv)
 	glOrtho(0, menuWindowWidth, menuWindowHeight, 0, -5, 5);
 	createGLUTMenus();
 
-	tb = new TextBox(100, 100, 50, 50, "text", subWindow);
-
-	glutMainLoop();           // Sonsuz bir þekilde süreç iþlem döngüsüne gir
 
 
+	glutMainLoop();
 	return 0;
 }

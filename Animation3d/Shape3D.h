@@ -1,15 +1,14 @@
 #pragma once
 #include "libs.h"
-struct Vector
-{
-	GLfloat x, y, z;
-};
 
 class Shape3D
 {
 public:
-	Shape3D(int size);
+	Shape3D();
+	Shape3D(int size, int edge, int type);
 	int size;// surface size
+	int edge;
+	int type;
 	vector<vector<Vector>> points;
 	vector<vector<Vector>> surfaces;
 protected:

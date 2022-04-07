@@ -6,16 +6,12 @@
 #include "Translate.h"
 #include "Scale.h"
 #include "SinusMove.h"
-
-struct Vector
-{
-	GLfloat x, y, z;
-};
+#include "Shape3D.h"
 
 class Object3D
 {
 public:
-	Object3D(Texture* tex);
+	Object3D(Shape3D* _shape, Texture* tex);
 	~Object3D();
 	void draw(); // draw object
 	void update(float timeMill); // update position
@@ -24,9 +20,7 @@ public:
 	void yaz();
 private:
 	Texture* tex;  // textrure of object
-	const static int size = 6;// surface size
-	std::vector<Vector> points[size];
-	std::vector<Vector> surfaces[size];
+	Shape3D* shape;
 
 	vector<MovementModel*>* movementModels;
 };

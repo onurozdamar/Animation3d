@@ -1,6 +1,6 @@
 #include "Cube.h"
 
-Cube::Cube() :Shape3D(6)
+Cube::Cube() :Shape3D(6, 4, GL_QUADS)
 {
 	float texX[] = { 0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f
 	,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f };
@@ -17,3 +17,4 @@ Cube::Cube() :Shape3D(6)
 	setPoints(vecX, vecY, vecZ);
 	setSurfaces(texX, texY);
 }
+

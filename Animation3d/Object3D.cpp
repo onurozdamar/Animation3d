@@ -1,34 +1,10 @@
 
 #include "Object3D.h"
 
-Object3D::Object3D(Texture* _tex)
+Object3D::Object3D(Shape3D* _shape, Texture* _tex)
 {
-	float texX[] = { 0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f
-		,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f };
-	float texY[] = { 0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f
-		,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f ,0.0f ,0.0f ,1.0f ,1.0f };
 
-	float vecX[] = { -0.5f ,0.5f ,0.5f ,-0.5f ,0.5f ,0.5f ,-0.5f ,-0.5f ,0.5f
-		,0.5f ,0.5f ,0.5f ,-0.5f ,-0.5f ,-0.5f ,-0.5f ,0.5f ,-0.5f ,-0.5f ,0.5f ,0.5f ,0.5f ,-0.5f ,-0.5f };
-	float vecY[] = { 0.5f ,0.5f ,0.5f ,0.5f ,-0.5f ,0.5f ,0.5f ,-0.5f ,0.5f
-		,0.5f ,-0.5f ,-0.5f ,-0.5f ,0.5f ,0.5f ,-0.5f ,-0.5f ,-0.5f ,-0.5f ,-0.5f ,0.5f ,-0.5f ,-0.5f ,0.5f };
-	float vecZ[] = { 0.5f ,0.5f ,-0.5f ,-0.5f ,0.5f ,0.5f ,0.5f ,0.5f ,-0.5f
-		,0.5f ,0.5f ,-0.5f ,0.5f ,0.5f ,-0.5f ,-0.5f ,0.5f ,0.5f ,-0.5f ,-0.5f ,-0.5f ,-0.5f ,-0.5f ,-0.5f };
-
-	for (int i = 0; i < 24; i++)
-	{
-		Vector tex{ 0,0 };
-		tex.x = texX[i];
-		tex.y = texY[i];
-		surfaces[i / 4].push_back(tex);
-
-		Vector vec{ 0,0 };
-		vec.x = vecX[i];
-		vec.y = vecY[i];
-		vec.z = vecZ[i];
-		points[i / 4].push_back(vec);
-	}
-
+	shape = _shape;
 	tex = _tex;
 
 	movementModels = new vector<MovementModel*>();
@@ -37,6 +13,8 @@ Object3D::Object3D(Texture* _tex)
 }
 
 Object3D::~Object3D() {
+	delete shape;
+	delete tex;
 	for (auto p : *movementModels)
 		delete p;
 }
@@ -63,13 +41,13 @@ void Object3D::draw()
 		tex->callTex();
 	}
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < shape->size; i++)
 	{
-		glBegin(GL_QUADS);
-		for (int j = 0; j < points[i].size(); j++)
+		glBegin(shape->type);
+		for (int j = 0; j < shape->points.at(i).size(); j++)
 		{
-			glTexCoord2f(surfaces[i].at(j).x, surfaces[i].at(j).y);
-			glVertex3f(points[i].at(j).x, points[i].at(j).y, points[i].at(j).z);
+			glTexCoord2f(shape->surfaces.at(i).at(j).x, shape->surfaces.at(i).at(j).y);
+			glVertex3f(shape->points.at(i).at(j).x, shape->points.at(i).at(j).y, shape->points.at(i).at(j).z);
 		}
 		glEnd();
 	}
